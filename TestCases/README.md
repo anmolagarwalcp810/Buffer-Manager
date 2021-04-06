@@ -1,6 +1,6 @@
 **Parameters for test cases**  
-PAGE_SIZE = 26 
-BUFFRE_SIZE = 40
+PAGE_SIZE = 26   
+BUFFRE_SIZE = 40   
 
 For final evaluation we can change these parameters to check your code, aslo make sure your code work for very large testcases too.  
  
