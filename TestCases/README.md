@@ -21,15 +21,15 @@ Test case for linear search and binary search
 ## TC_join1
 Test case for join 1  
 **input1_join** - Binary file containing integers  
-**input2_join** - Binary file containnig integers
+**input2_join** - Binary file containnig integers   
 **outfile_join1** - Output binary file containing integers after join
 
 
 ## TC_join2 
 Test case for join 2  
 **input1_join** - Binary file containing integers  
-**input2_join** - Binary file containnig  sorted integers
+**input2_join** - Binary file containnig  sorted integers  
 **outfile_join2** - Output binary file containing integers after join
 
-*Note*:- In join algorithm order of integers in output file can be different based on your division of memory blocks.
+*Note*:- In join algorithms order of integers in output file can be different based on your division of memory blocks.
 
