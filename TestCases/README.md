@@ -15,7 +15,7 @@ Test case for linear searh ad binary search
  Test case for insertion   
  **sorted_input** - Binary file containing Sorted integers  
  **query_insert.txt** - File containing integers which need to insert in sorted_input file        
- **output_insert** - Biary File after completing all insertion given in query_insert.txt   
+ **output_insert** - Biary File after completing all insertions given in query_insert.txt   
  
  
 ## TC_join 
