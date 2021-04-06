@@ -1,5 +1,5 @@
 **Parameters for test cases**  
-PAGE_SIZE = 28
+PAGE_SIZE = 28   
 BUFFER_SIZE = 40   
 
 In final evaluation we can change these parameters to test your code, also make sure your code work for very large testcases too.  
