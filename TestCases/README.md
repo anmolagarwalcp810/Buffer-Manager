@@ -7,7 +7,7 @@ In final evaluation we can change these parameters to test your code, also make 
  ## TC_search    
 Test case for linear search and binary search       
 **sorted_input** - Binary file containing Sorted integers   
-**query_search.txt** - File containing integers which need to search in sorted_input file   
+**query_search.txt** - File containing integers which need to search in sorted_input file    
 **output_Search.txt** - Contain search output  
 
  
