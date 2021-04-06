@@ -1,11 +1,11 @@
 **Parameters for test cases**  
 PAGE_SIZE = 28
-BUFFRE_SIZE = 40   
+BUFFER_SIZE = 40   
 
 In final evaluation we can change these parameters to test your code, also make sure your code work for very large testcases too.  
  
  ## TC_search    
-Test case for linear searh ad binary search       
+Test case for linear search and binary search       
 **sorted_input** - Binary file containing Sorted integers   
 **query_search.txt** - File containing integers which need to search in sorted_input file   
 **output_Search.txt** - Contain search output  
