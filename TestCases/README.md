@@ -2,7 +2,7 @@
 PAGE_SIZE = 26   
 BUFFRE_SIZE = 40   
 
-For final evaluation we can change these parameters to check your code, aslo make sure your code work for very large testcases too.  
+In final evaluation we can change these parameters to test your code, aslo make sure your code work for very large testcases too.  
  
  ## TC_search    
 Test case for linear searh ad binary search       
