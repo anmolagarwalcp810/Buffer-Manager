@@ -12,7 +12,7 @@ Test case for linear search and binary search
 
  
  ## TC_delete 
- Test case for insertion   
+ Test case for deletion   
  **sorted_input** - Binary file containing Sorted integers  
  **query_insert.txt** - File containing integers which need to delete in sorted_input file        
  **output_delete** - Binary File after completing all deletions given in query_insert.txt   
