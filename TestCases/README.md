@@ -11,11 +11,11 @@ Test case for linear search and binary search
 **output_Search.txt** - Contain search output  
 
  
- ## TC_insert  
+ ## TC_delete 
  Test case for insertion   
  **sorted_input** - Binary file containing Sorted integers  
- **query_insert.txt** - File containing integers which need to insert in sorted_input file        
- **output_insert** - Binary File after completing all insertions given in query_insert.txt   
+ **query_insert.txt** - File containing integers which need to delete in sorted_input file        
+ **output_delete** - Binary File after completing all deletions given in query_insert.txt   
  
  
 ## TC_join1
