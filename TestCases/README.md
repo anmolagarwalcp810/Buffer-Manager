@@ -31,5 +31,5 @@ Test case for join 2
 **input2_join** - Binary file containing  sorted integers  
 **outfile_join2** - Output binary file containing integers after join
 
-*Note*:- In join algorithms order of integers in output file can be different based on your division of memory blocks.
+*Note*:- In join algorithms order of integers in output file can be different.
 
