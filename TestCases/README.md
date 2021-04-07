@@ -31,5 +31,5 @@ Test case for join 2
 **input2_join** - Binary file containing  sorted integers  
 **outfile_join2** - Output binary file containing integers after join
 
-*Note*:- In join algorithms, for sample test case we consider BUFFER_SIZE =3 also order of integers in output file can be different.
+*Note*:- In join algorithms, for sample test cases we consider BUFFER_SIZE =3 also order of integers in output file can be different.
 
