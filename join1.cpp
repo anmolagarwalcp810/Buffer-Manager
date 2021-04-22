@@ -111,6 +111,9 @@ int main(int argc,char* argv[]) {
 				}
 				count1+=4;
 			}
+			for(auto i:R2){
+				fh2.UnpinPage(i.GetPageNum());
+			}
 			if(cur2==fh2.LastPage()){
 				break;
 			}
