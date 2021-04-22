@@ -57,7 +57,6 @@ int main(int argc,char* argv[]) {
 			queries.push_back(token.c_str());
 		}
 		num = atoi(queries[1].c_str());
-		cout<<num<<endl;
 		if(queries[0].compare("SEARCH")!=0){
 			continue;
 		}
@@ -70,9 +69,7 @@ int main(int argc,char* argv[]) {
 					break;
 				}
 				if(value==num){
-					printf("73\n");
 					if(output_count==PAGE_CONTENT_SIZE){
-						printf("75\n");
 						fh_output.FlushPages();
 						cur_output = fh_output.NewPage();
 						output_count=0;
@@ -83,7 +80,6 @@ int main(int argc,char* argv[]) {
 					memcpy(&data_output[output_count],&value,sizeof(int));
 					output_count+=4;
 					if(output_count==PAGE_CONTENT_SIZE){
-						printf("86\n");
 						fh_output.FlushPages();
 						cur_output = fh_output.NewPage();
 						output_count=0;
@@ -124,6 +120,10 @@ int main(int argc,char* argv[]) {
 		}
 		memcpy(&data_output[output_count],&value,sizeof(int));
 		output_count+=4;
+
+		// re-initialized cur for next query
+		cur = fh_input.FirstPage();
+			
 	}
 
 	// Now fill empty entries by INT_MIN

@@ -10,6 +10,7 @@ sample_run.o : sample_run.cpp
 
 linearsearch : $(linearsearchObjects)
 		g++ -std=c++11 -o linearsearch $(linearsearchObjects)
+		cp linearsearch ../Run/TC_search/Run_linear/linearsearch
 
 linearsearch.o : linearsearch.cpp
 		 g++ -std=c++11 -c linearsearch.cpp
