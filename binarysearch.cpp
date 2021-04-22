@@ -79,14 +79,14 @@ int main(int argc,char* argv[]) {
         }
         /// Binary Search
 
-        printf("82 Starting Query Execution: \n");
+        // printf("82 Starting Query Execution: \n");
         PageHandler cur;
         bool done = false;
         firstPageNum = total_first;
         lastPageNum = total_last;
 
-        printf("88 First Page Number: %d\n", firstPageNum);
-        printf("89 Last Page Number: %d\n", lastPageNum);
+        // printf("88 First Page Number: %d\n", firstPageNum);
+        // printf("89 Last Page Number: %d\n", lastPageNum);
 
         while(lastPageNum >= firstPageNum){
             int mid = (lastPageNum + firstPageNum)/2; //TODO: Change to avoid overflow
@@ -101,7 +101,7 @@ int main(int argc,char* argv[]) {
                     break;
                 }
                 if(value==num){
-                    printf("104 The Page %d contains the values\n", mid);
+                    // printf("104 The Page %d contains the values\n", mid);
                     // The page contains num
                     // Write the values on this page to output:
                     while(count < PAGE_CONTENT_SIZE && value == num){
@@ -112,7 +112,7 @@ int main(int argc,char* argv[]) {
 
                     // Check if we need to load previous pages:
                     // If the first val is num and this is not the first page
-                    memcpy(&value,&data[0],sizeof(int));
+                    memcpy(&value,&data[0],sizeof(int));    // first entry of current page
                     if(value == num && cur.GetPageNum() != total_first){
                         while(true){
                             // Load the just previous page and write its content
@@ -136,6 +136,7 @@ int main(int argc,char* argv[]) {
                     // Load the page back!
                     fh_input.UnpinPage(cur.GetPageNum());
                     cur = fh_input.PageAt(mid);
+                    data = cur.GetData();
                     // Now let's check for next pages!
 
                     // TODO: Check if PAGE_CONTENT_SIZE - 4 gives the last value!
@@ -152,6 +153,9 @@ int main(int argc,char* argv[]) {
                                 memcpy(&value,&data[count],sizeof(int));
                                 if(value == num) {
                                     write(output_count, count, cur, cur_output, fh_output, data_output);
+                                }
+                                else{
+                                    break;
                                 }
                                 count += 4;
                             }
@@ -179,7 +183,8 @@ int main(int argc,char* argv[]) {
             }
             else if(last_val < num){
                 firstPageNum = mid+1;
-            } else {
+            } 
+            else {
                 // last_val > num > first_val
                 // No entry in here exit!
                 break;

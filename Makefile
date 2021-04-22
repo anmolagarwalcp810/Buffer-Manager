@@ -5,7 +5,7 @@ join1objects = buffer_manager.o file_manager.o join1.o
 view_fileobjects = buffer_manager.o file_manager.o view_file.o
 count_each_elementObjects = buffer_manager.o file_manager.o count_each_element.o
 
-sample_run : $(sampleobjects) linearsearch view_file join1 count_each_element
+sample_run : $(sampleobjects) linearsearch view_file join1 count_each_element binarysearch
 	     g++ -std=c++11 -o sample_run $(sampleobjects)
 
 sample_run.o : sample_run.cpp
@@ -14,7 +14,7 @@ sample_run.o : sample_run.cpp
 linearsearch : $(linearsearchObjects)
 		g++ -std=c++11 -o linearsearch $(linearsearchObjects)
 		#remove this line in final submission
-		#cp linearsearch ../Run/TC_search/Run_linear/linearsearch
+# 		cp linearsearch ../Run/TC_search/Run_linear/linearsearch
 
 linearsearch.o : linearsearch.cpp
 		 g++ -std=c++11 -c linearsearch.cpp
@@ -22,7 +22,7 @@ linearsearch.o : linearsearch.cpp
 binarysearch : $(binarysearchObjects)
 		g++ -std=c++11 -o binarysearch $(binarysearchObjects)
 		#remove this line in final submission
-		#cp linearsearch ../Run/TC_search/Run_linear/linearsearch
+# 		cp binarysearch ../Run/TC_search/Run_binary/binarysearch
 
 binarysearch.o : binarysearch.cpp
 		 g++ -std=c++11 -c binarysearch.cpp
@@ -31,7 +31,7 @@ binarysearch.o : binarysearch.cpp
 join1 : $(join1objects)
 		g++ -std=c++11 -o join1 $(join1objects)
 		#remove this line in final submission
-		#cp join1 ../Run/TC_join1/Run/join1
+# 		cp join1 ../Run/TC_join1/Run/join1
 
 join1.o : join1.cpp
 		g++ -std=c++11 -c join1.cpp
@@ -56,4 +56,4 @@ file_manager.o : file_manager.cpp
 
 clean :
 	rm -f *.o
-	rm -f sample_run linearsearch view_file join1 count_each_element
+	rm -f sample_run linearsearch view_file join1 count_each_element binarysearch
