@@ -1,5 +1,6 @@
 sampleobjects = buffer_manager.o file_manager.o sample_run.o
 linearsearchObjects = buffer_manager.o file_manager.o linearsearch.o
+binarysearchObjects = buffer_manager.o file_manager.o binarysearch.o
 join1objects = buffer_manager.o file_manager.o join1.o
 view_fileobjects = buffer_manager.o file_manager.o view_file.o
 count_each_elementObjects = buffer_manager.o file_manager.o count_each_element.o
@@ -17,6 +18,15 @@ linearsearch : $(linearsearchObjects)
 
 linearsearch.o : linearsearch.cpp
 		 g++ -std=c++11 -c linearsearch.cpp
+
+binarysearch : $(binarysearchObjects)
+		g++ -std=c++11 -o binarysearch $(binarysearchObjects)
+		#remove this line in final submission
+		#cp linearsearch ../Run/TC_search/Run_linear/linearsearch
+
+binarysearch.o : binarysearch.cpp
+		 g++ -std=c++11 -c binarysearch.cpp
+
 
 join1 : $(join1objects)
 		g++ -std=c++11 -o join1 $(join1objects)

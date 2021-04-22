@@ -5,28 +5,6 @@
 #include <bits/stdc++.h> /// TODO: Remove this line as it consumes a lot of memory!
 using namespace std;
 
-/* ALGORITHM
-
-Input : A file accessible through the File Manager API containing the sorted integers, and num,
-the integer to search
-Output: An output file accessible through the File Manager API in which result is to be stored.
-Store (Page number, offset) containing the integer if present, else (-1, -1) in the output file
- curr = first Page Number
- while curr ≤ lastP ageN umber do
- Read page curr into the buffer
-	if num is present in curr then
-		output (curr, offset at which num is present)
-		return
-	end
-	else
-		increment curr by 1
-	end
-end
-output(-1, -1)
-
-
-*/
-
 void write(int& output_count,int count, PageHandler& cur,PageHandler& cur_output, FileHandler& fh_output,char* data_output){
     if(output_count==PAGE_CONTENT_SIZE){
         /// Need to create a new page
@@ -100,8 +78,16 @@ int main(int argc,char* argv[]) {
             continue;
         }
         /// Binary Search
+
+        printf("82 Starting Query Execution: \n");
         PageHandler cur;
         bool done = false;
+        firstPageNum = total_first;
+        lastPageNum = total_last;
+
+        printf("88 First Page Number: %d\n", firstPageNum);
+        printf("89 Last Page Number: %d\n", lastPageNum);
+
         while(lastPageNum >= firstPageNum){
             int mid = (lastPageNum + firstPageNum)/2; //TODO: Change to avoid overflow
             cur = fh_input.PageAt(mid);
@@ -115,6 +101,7 @@ int main(int argc,char* argv[]) {
                     break;
                 }
                 if(value==num){
+                    printf("104 The Page %d contains the values\n", mid);
                     // The page contains num
                     // Write the values on this page to output:
                     while(count < PAGE_CONTENT_SIZE && value == num){
