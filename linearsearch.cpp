@@ -70,6 +70,7 @@ int main(int argc,char* argv[]) {
 				}
 				if(value==num){
 					if(output_count==PAGE_CONTENT_SIZE){
+						fh_output.UnpinPage(cur_output.GetPageNum());
 						fh_output.FlushPages();
 						cur_output = fh_output.NewPage();
 						output_count=0;
@@ -80,6 +81,7 @@ int main(int argc,char* argv[]) {
 					memcpy(&data_output[output_count],&value,sizeof(int));
 					output_count+=4;
 					if(output_count==PAGE_CONTENT_SIZE){
+						fh_output.UnpinPage(cur_output.GetPageNum());
 						fh_output.FlushPages();
 						cur_output = fh_output.NewPage();
 						output_count=0;
@@ -92,6 +94,7 @@ int main(int argc,char* argv[]) {
 				}
 				count+=4;
 			} 
+			fh_input.UnpinPage(cur.GetPageNum());
 			if(cur==fh_input.LastPage()){
 				// all pages have been processed
 				break;
@@ -103,6 +106,7 @@ int main(int argc,char* argv[]) {
 		}
 		// Insert -1,-1
 		if(output_count==PAGE_CONTENT_SIZE){
+			fh_output.UnpinPage(cur_output.GetPageNum());
 			fh_output.FlushPages();
 			cur_output = fh_output.NewPage();
 			output_count=0;
@@ -113,6 +117,7 @@ int main(int argc,char* argv[]) {
 		memcpy(&data_output[output_count],&value,sizeof(int));
 		output_count+=4;
 		if(output_count==PAGE_CONTENT_SIZE){
+			fh_output.UnpinPage(cur_output.GetPageNum());
 			fh_output.FlushPages();
 			cur_output = fh_output.NewPage();
 			output_count=0;
@@ -132,6 +137,7 @@ int main(int argc,char* argv[]) {
 		memcpy(&data_output[output_count],&value,sizeof(int));
 		output_count+=4;
 	}
+	fh_output.UnpinPage(cur_output.GetPageNum());
 	fh_output.FlushPages();
 
 	// Now close both files
