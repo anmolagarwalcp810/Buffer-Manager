@@ -208,8 +208,8 @@ int main(int argc,char* argv[]) {
 		// fill the vector with n-2 pages
 		// go through the vector with normal algo
 		// by replacing for each page in R2_vector, instead of R2
+		// fm.PrintBuffer();
 		cur1 = fh1.PageAt(page_at);
-
 		vector_count=0;
 		while(true){
 			R1.push_back(cur1);
@@ -226,17 +226,17 @@ int main(int argc,char* argv[]) {
 
 		page_at = cur1.GetPageNum()+1;		// next page to look at
 
-		cout<<"PAGES FROM R1"<<" "<<"page: "<<cur1.GetPageNum()<<endl;
-		for(auto i:R1){
-			cout<<i.GetPageNum()<<" "<<flush;
-		}
-		cout<<endl;
+		// cout<<"PAGES FROM R1"<<" "<<"page: "<<cur1.GetPageNum()<<endl;
+		// for(auto i:R1){
+		// 	cout<<i.GetPageNum()<<" "<<flush;
+		// }
+		// cout<<endl;
 		for(auto i:R1){
 			data1 = i.GetData();
 			for(count1=0;count1<PAGE_CONTENT_SIZE;count1+=4){
 				memcpy(&num,&data1[count1],sizeof(int));
 				answer = binary_search(fh2,num);
-				cout<<"225 "<<"PAGE : "<<i.GetPageNum()<<", OFFSET "<<count1/4<<" answer: "<<answer.first<<" "<<answer.second/4<<endl;
+				// cout<<"225 "<<"PAGE : "<<i.GetPageNum()<<", OFFSET "<<count1/4<<" answer: "<<answer.first<<" "<<answer.second/4<<endl;
 				if(answer.first==-1){
 					continue;
 				}
@@ -260,11 +260,11 @@ int main(int argc,char* argv[]) {
 							output_count+=4;
 							count2+=4;
 						}
+						fh2.UnpinPage(cur2.GetPageNum());
 						if(cur2.GetPageNum()==total_last2 || value!=num){
 							break;
 						}
 						else{
-							fh2.UnpinPage(cur2.GetPageNum());
 							cur2=fh2.NextPage(cur2.GetPageNum());
 							data2=cur2.GetData();
 							count2=0;
@@ -276,7 +276,10 @@ int main(int argc,char* argv[]) {
 		for(auto i:R1){
 			fh1.UnpinPage(i.GetPageNum());
 		}
-		if(done)break;
+		if(done){
+			// page_at=0;
+			break;
+		}
 	}
 
 	// Insert -1,-1, here we need to insert only once

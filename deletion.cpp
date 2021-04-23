@@ -195,7 +195,7 @@ int main(int argc, char* argv[]) {
     string token;
     ifstream query_file(argv[2]); // Open the query file!
 
-    printf("198\n");
+    // printf("198\n");
 
     while(getline(query_file,query_line)){
         vector<string> queries;
@@ -212,11 +212,11 @@ int main(int argc, char* argv[]) {
         cur = fh_input.LastPage();
         total_last = cur.GetPageNum();
         fh_input.UnpinPage(total_last);
-        printf("212 %d\n",num );
+        // printf("212 %d\n",num );
         // Bin Search for the (p, off_p)
         pair<int,int> start = binSearch(num, fh_input, total_first, total_last, cur);
 
-        printf("216 %d %d\n", start.first,start.second);
+        // printf("216 %d %d\n", start.first,start.second);
 
 
         if(start.first == -1 && start.second == -1){
@@ -229,7 +229,7 @@ int main(int argc, char* argv[]) {
         end = linScan(num, fh_input, total_first, total_last, start, cur);
 
 
-        printf("229 %d %d\n", end.first,end.second);        
+        // printf("229 %d %d\n", end.first,end.second);        
 
         while (end.first != -1 && end.first <= total_last){
             // Copy(q, off_q, p, off_p)
@@ -250,14 +250,14 @@ int main(int argc, char* argv[]) {
             if(end.first==-1 && end.second==-1){
                 break;
             }
-            printf("250\n");
-            printf("start: %d %d\n",start.first,start.second );
-            printf("end: %d %d\n",end.first,end.second );
+            // printf("250\n");
+            // printf("start: %d %d\n",start.first,start.second );
+            // printf("end: %d %d\n",end.first,end.second );
         }
         
         // Delete all pages after p
 
-        printf("257\n");
+        // printf("257\n");
 
         // INT_MIN
         cur = fh_input.PageAt(start.first);
@@ -268,7 +268,7 @@ int main(int argc, char* argv[]) {
             start.second++;
         }
 
-        printf("268\n");
+        // printf("268\n");
 
         fh_input.MarkDirty(cur.GetPageNum());
         fh_input.UnpinPage(cur.GetPageNum());
@@ -277,7 +277,7 @@ int main(int argc, char* argv[]) {
             cur = fh_input.NextPage(cur.GetPageNum());
             while(true){
                 temp_num = cur.GetPageNum();
-                printf("temp_num %d\n",temp_num);
+                // printf("temp_num %d\n",temp_num);
                 fh_input.DisposePage(cur.GetPageNum());
                 fh_input.FlushPage(cur.GetPageNum());
                 if(temp_num==total_last)break;

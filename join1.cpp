@@ -43,7 +43,8 @@ int main(int argc,char* argv[]) {
 	fh2.UnpinPage(total_last2);
 
 	// Define cur1,cur2, data1, data2, count1,count2
-	cur1 = fh1.FirstPage(),cur2 = fh2.FirstPage();
+	cur1 = fh1.FirstPage();
+	// cur2 = fh2.FirstPage();
 	char* data1,*data2;
 	int value,value1,value2,count1,count2;
 
@@ -66,6 +67,7 @@ int main(int argc,char* argv[]) {
 	while(true){
 		// loop for R2
 		fh2.FlushPages();
+		// fm.PrintBuffer();
 		cur2 = fh2.FirstPage();
 		while(true){
 			vector<PageHandler> R2;
@@ -89,11 +91,13 @@ int main(int argc,char* argv[]) {
 			
 			page_at = cur2.GetPageNum()+1;		// next page to look at
 
-			cout<<"PAGES FROM R2"<<" "<<"R1 page: "<<cur1.GetPageNum()<<endl;
-			for(auto i:R2){
-				cout<<i.GetPageNum()<<" "<<flush;
-			}
-			cout<<endl;
+			// printf("PAGE_AT,total_last2 : %d, %d\n",page_at,total_last2 );
+
+			// cout<<"PAGES FROM R2"<<" "<<"R1 page: "<<cur1.GetPageNum()<<endl;
+			// for(auto i:R2){
+			// 	cout<<i.GetPageNum()<<" "<<flush;
+			// }
+			// cout<<endl;
 
 
 			data1 = cur1.GetData();
@@ -122,7 +126,7 @@ int main(int argc,char* argv[]) {
 						}
 						count2+=4;
 					}
-					fh2.UnpinPage(i.GetPageNum());		
+					// fh2.UnpinPage(i.GetPageNum());		
 				}
 				count1+=4;
 			}
@@ -130,6 +134,7 @@ int main(int argc,char* argv[]) {
 				fh2.UnpinPage(i.GetPageNum());
 			}
 			if(page_at > total_last2){
+				page_at=0;
 				break;
 			}
 		}
@@ -139,10 +144,8 @@ int main(int argc,char* argv[]) {
 			break;
 		}
 		else{
-			fh1.UnpinPage(cur1.GetPageNum());
-			cur1=fh1.NextPage(cur2.GetPageNum());
+			cur1=fh1.NextPage(cur1.GetPageNum());
 			data1=cur1.GetData();
-			// cur1=fh1.NextPage(cur1.GetPageNum());
 		}	
 	}
 
