@@ -139,7 +139,10 @@ int main(int argc,char* argv[]) {
 			break;
 		}
 		else{
-			cur1=fh1.NextPage(cur1.GetPageNum());
+			fh1.UnpinPage(cur1.GetPageNum());
+			cur1=fh1.NextPage(cur2.GetPageNum());
+			data1=cur1.GetData();
+			// cur1=fh1.NextPage(cur1.GetPageNum());
 		}	
 	}
 
