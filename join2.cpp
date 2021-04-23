@@ -59,6 +59,7 @@ pair<int,int> binary_search(FileHandler &fh_input,int num) {
 
     while(lastPageNum >= firstPageNum){
         int mid = (lastPageNum + firstPageNum)/2; //TODO: Change to avoid overflow
+        fh_input.UnpinPage(cur.GetPageNum());
         cur = fh_input.PageAt(mid);
         data = cur.GetData(); // Get the data for the current page
         count = 0;
@@ -121,9 +122,10 @@ pair<int,int> binary_search(FileHandler &fh_input,int num) {
             // No entry in here exit!
             break;
         }
-        fh_input.UnpinPage(cur.GetPageNum()); /// Unpin it
+        fh_input.UnpinPage(cur.GetPageNum()); // Unpin it
         count = 0;
     }
+    fh_input.UnpinPage(cur.GetPageNum());
     return answer;
 }
 
@@ -209,6 +211,7 @@ int main(int argc,char* argv[]) {
 		// go through the vector with normal algo
 		// by replacing for each page in R2_vector, instead of R2
 		// fm.PrintBuffer();
+		// printf("212\n");
 		cur1 = fh1.PageAt(page_at);
 		vector_count=0;
 		while(true){
@@ -233,18 +236,27 @@ int main(int argc,char* argv[]) {
 		// cout<<endl;
 		for(auto i:R1){
 			data1 = i.GetData();
+			// printf("237\n");
 			for(count1=0;count1<PAGE_CONTENT_SIZE;count1+=4){
+				// printf("240\n");
 				memcpy(&num,&data1[count1],sizeof(int));
+				// fm.PrintBuffer();
+				fh2.UnpinPage(cur2.GetPageNum());
 				answer = binary_search(fh2,num);
 				// cout<<"225 "<<"PAGE : "<<i.GetPageNum()<<", OFFSET "<<count1/4<<" answer: "<<answer.first<<" "<<answer.second/4<<endl;
+
+				// printf("242\n");
 				if(answer.first==-1){
 					continue;
 				}
 				else{
+					// printf("247\n");
 					// need to check that R2's pages have been unpinned.
+					fh2.UnpinPage(cur2.GetPageNum());
 					cur2 = fh2.PageAt(answer.first);
 					data2 = cur2.GetData();
 					count2 = answer.second;
+					// fm.PrintBuffer();
 					while(true){
 						while(count2<PAGE_CONTENT_SIZE){
 							memcpy(&value,&data2[count2],sizeof(int));
@@ -261,6 +273,7 @@ int main(int argc,char* argv[]) {
 							count2+=4;
 						}
 						fh2.UnpinPage(cur2.GetPageNum());
+						// printf("270\n");
 						if(cur2.GetPageNum()==total_last2 || value!=num){
 							break;
 						}
@@ -270,6 +283,7 @@ int main(int argc,char* argv[]) {
 							count2=0;
 						}
 					}
+					// printf("279\n");
 				}
 			}
 		}

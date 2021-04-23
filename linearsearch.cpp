@@ -61,6 +61,7 @@ int main(int argc,char* argv[]) {
 	string query_line;
 	string token;
 	ifstream query_file(argv[2]);
+	fm.PrintBuffer();
 	while(getline(query_file,query_line)){
 		vector<string> queries;
 		stringstream query(query_line);
@@ -72,6 +73,7 @@ int main(int argc,char* argv[]) {
 			continue;
 		}
 		while(true){
+			fm.PrintBuffer();
 			data = cur.GetData();
 			count=0;
 			while(count<PAGE_CONTENT_SIZE){

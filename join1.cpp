@@ -70,6 +70,7 @@ int main(int argc,char* argv[]) {
 		// fm.PrintBuffer();
 		cur2 = fh2.FirstPage();
 		while(true){
+			// fm.PrintBuffer();
 			vector<PageHandler> R2;
 			// fill the vector with n-2 pages
 			// go through the vector with normal algo
