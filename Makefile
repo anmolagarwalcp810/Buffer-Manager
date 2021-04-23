@@ -1,12 +1,13 @@
 sampleobjects = buffer_manager.o file_manager.o sample_run.o
 linearsearchObjects = buffer_manager.o file_manager.o linearsearch.o
 binarysearchObjects = buffer_manager.o file_manager.o binarysearch.o
+deletionObjects = buffer_manager.o file_manager.o deletion.o
 join1objects = buffer_manager.o file_manager.o join1.o
 join2objects = buffer_manager.o file_manager.o join2.o
 view_fileobjects = buffer_manager.o file_manager.o view_file.o
 count_each_elementObjects = buffer_manager.o file_manager.o count_each_element.o
 
-sample_run : $(sampleobjects) linearsearch view_file join1 join2 count_each_element binarysearch
+sample_run : $(sampleobjects) linearsearch view_file join1 join2 count_each_element binarysearch deletion
 	     g++ -std=c++11 -o sample_run $(sampleobjects)
 
 sample_run.o : sample_run.cpp
@@ -27,6 +28,15 @@ binarysearch : $(binarysearchObjects)
 
 binarysearch.o : binarysearch.cpp
 		 g++ -std=c++11 -c binarysearch.cpp
+
+deletion : $(deletionObjects)
+		g++ -std=c++11 -o deletion $(deletionObjects)
+		#remove this line in final submission
+# 		cp deletion ../Run/TC_delete/deletion
+# 		cp TestCases/TC_delete/sorted_input ../Run/TC_delete/sorted_input
+
+deletion.o : deletion.cpp
+		 g++ -std=c++11 -c deletion.cpp		
 
 
 join1 : $(join1objects)
@@ -65,4 +75,4 @@ file_manager.o : file_manager.cpp
 
 clean :
 	rm -f *.o
-	rm -f sample_run linearsearch view_file join1 join2 count_each_element binarysearch
+	rm -f sample_run linearsearch view_file join1 join2 count_each_element binarysearch deletion

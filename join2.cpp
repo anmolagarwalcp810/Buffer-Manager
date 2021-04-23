@@ -168,8 +168,15 @@ int main(int argc,char* argv[]) {
 	FileHandler fh2 = fm.OpenFile(input_file2);
 	FileHandler fh_output = fm.CreateFile(output_file);
 
+
+	PageHandler cur1,cur2;
+	cur1 = fh1.LastPage(),cur2 = fh2.LastPage();
+	int total_last1 = cur1.GetPageNum(),total_last2 = cur2.GetPageNum();
+	fh1.UnpinPage(total_last1);
+	fh2.UnpinPage(total_last2);
+
 	// Define cur1,cur2, data1, data2, count1,count2
-	PageHandler cur1 = fh1.FirstPage(),cur2 = fh2.FirstPage();
+	cur1 = fh1.FirstPage(),cur2 = fh2.FirstPage();
 	char* data1,*data2;
 	int value,value1,value2,count1,count2;
 
@@ -189,7 +196,11 @@ int main(int argc,char* argv[]) {
 
 	pair<int,int> answer;
 
+	int page_at = 0;
+
 	bool done=false;
+
+	page_at = 0;
 
 	// loop for R1
 	while(true){
@@ -197,17 +208,23 @@ int main(int argc,char* argv[]) {
 		// fill the vector with n-2 pages
 		// go through the vector with normal algo
 		// by replacing for each page in R2_vector, instead of R2
+		cur1 = fh1.PageAt(page_at);
+
 		vector_count=0;
-		while(vector_count<n-2){
+		while(true){
 			R1.push_back(cur1);
-			if(cur1==fh1.LastPage()){
+			if(cur1.GetPageNum()==total_last1){
 				done=true;
 				break;
 			}
-			fh1.UnpinPage(cur1.GetPageNum());
-			cur1 = fh1.NextPage(cur1.GetPageNum());
 			vector_count++;
+			if(vector_count==n-2){
+				break;
+			}
+			cur1 = fh1.NextPage(cur1.GetPageNum());
 		}
+
+		page_at = cur1.GetPageNum()+1;		// next page to look at
 
 		cout<<"PAGES FROM R1"<<" "<<"page: "<<cur1.GetPageNum()<<endl;
 		for(auto i:R1){
@@ -243,7 +260,7 @@ int main(int argc,char* argv[]) {
 							output_count+=4;
 							count2+=4;
 						}
-						if(cur2==fh2.LastPage() || value!=num){
+						if(cur2.GetPageNum()==total_last2 || value!=num){
 							break;
 						}
 						else{

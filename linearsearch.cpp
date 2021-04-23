@@ -39,6 +39,17 @@ int main(int argc,char* argv[]) {
 	int num = 1;	// later add a while loop on query_search.txt, and also handle execptions (optional)
 	FileHandler fh_output = fm.CreateFile(output_file);
 
+
+	PageHandler first = fh_input.FirstPage();
+    int firstPageNum = first.GetPageNum();
+    fh_input.UnpinPage(firstPageNum);
+    PageHandler last = fh_input.LastPage();
+    int lastPageNum = last.GetPageNum();
+    fh_input.UnpinPage(lastPageNum);
+
+    int total_first = firstPageNum;
+    int total_last = lastPageNum;
+
 	PageHandler cur = fh_input.FirstPage();
 	char* data;
 	int value,count;
@@ -95,7 +106,7 @@ int main(int argc,char* argv[]) {
 				count+=4;
 			} 
 			fh_input.UnpinPage(cur.GetPageNum());
-			if(cur==fh_input.LastPage()){
+			if(cur.GetPageNum()==total_last){
 				// all pages have been processed
 				break;
 			}
