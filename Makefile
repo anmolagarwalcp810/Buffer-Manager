@@ -6,34 +6,38 @@ join1objects = buffer_manager.o file_manager.o join1.o
 join2objects = buffer_manager.o file_manager.o join2.o
 view_fileobjects = buffer_manager.o file_manager.o view_file.o
 count_each_elementObjects = buffer_manager.o file_manager.o count_each_element.o
+create_filesObjects = buffer_manager.o file_manager.o create_files.o
 
-sample_run : $(sampleobjects) linearsearch view_file join1 join2 count_each_element binarysearch deletion
+sample_run : $(sampleobjects) linearsearch view_file join1 join2 count_each_element binarysearch deletion create_files
 	     g++ -std=c++11 -o sample_run $(sampleobjects)
+		#remove this line in final submission
+		cp linearsearch ../Run/TC_search/Run_linear/linearsearch	     
+		cp binarysearch ../Run/TC_search/Run_binary/binarysearch
+		cp deletion ../Run/TC_delete/deletion
+		cp TestCases/TC_delete/sorted_input ../Run/TC_delete/sorted_input
+		cp join1 ../Run/TC_join1/Run/join1
+		cp join2 ../Run/TC_join2/Run/join2
+		cp create_files ../Run/NewTestCases/create_files
+
 
 sample_run.o : sample_run.cpp
 	g++ -std=c++11 -c sample_run.cpp
 
 linearsearch : $(linearsearchObjects)
 		g++ -std=c++11 -o linearsearch $(linearsearchObjects)
-		#remove this line in final submission
-# 		cp linearsearch ../Run/TC_search/Run_linear/linearsearch
+
 
 linearsearch.o : linearsearch.cpp
 		 g++ -std=c++11 -c linearsearch.cpp
 
 binarysearch : $(binarysearchObjects)
 		g++ -std=c++11 -o binarysearch $(binarysearchObjects)
-		#remove this line in final submission
-# 		cp binarysearch ../Run/TC_search/Run_binary/binarysearch
 
 binarysearch.o : binarysearch.cpp
 		 g++ -std=c++11 -c binarysearch.cpp
 
 deletion : $(deletionObjects)
 		g++ -std=c++11 -o deletion $(deletionObjects)
-		#remove this line in final submission
-# 		cp deletion ../Run/TC_delete/deletion
-# 		cp TestCases/TC_delete/sorted_input ../Run/TC_delete/sorted_input
 
 deletion.o : deletion.cpp
 		 g++ -std=c++11 -c deletion.cpp		
@@ -41,16 +45,12 @@ deletion.o : deletion.cpp
 
 join1 : $(join1objects)
 		g++ -std=c++11 -o join1 $(join1objects)
-		#remove this line in final submission
-# 		cp join1 ../Run/TC_join1/Run/join1
 
 join1.o : join1.cpp
 		g++ -std=c++11 -c join1.cpp
 
 join2 : $(join2objects)
 		g++ -std=c++11 -o join2 $(join2objects)
-		#remove this line in final submission
-# 		cp join2 ../Run/TC_join2/Run/join2
 
 join2.o : join2.cpp
 		g++ -std=c++11 -c join2.cpp
@@ -67,6 +67,13 @@ count_each_element : $(count_each_elementObjects)
 count_each_element.o : count_each_element.cpp
 		g++ -std=c++11 -c count_each_element.cpp	
 
+create_files : $(create_filesObjects)
+		g++ -std=c++11 -o create_files $(create_filesObjects)		
+
+create_files.o : create_files.cpp
+		g++ -std=c++11 -c create_files.cpp			
+
+
 buffer_manager.o : buffer_manager.cpp
 	g++ -std=c++11 -c buffer_manager.cpp
 
@@ -75,4 +82,4 @@ file_manager.o : file_manager.cpp
 
 clean :
 	rm -f *.o
-	rm -f sample_run linearsearch view_file join1 join2 count_each_element binarysearch deletion
+	rm -f sample_run linearsearch view_file join1 join2 count_each_element binarysearch deletion create_files
