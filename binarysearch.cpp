@@ -5,7 +5,8 @@
 #include <bits/stdc++.h> /// TODO: Remove this line as it consumes a lot of memory!
 using namespace std;
 
-void write(int& output_count,int count, PageHandler& cur,PageHandler& cur_output, FileHandler& fh_output,char* data_output){
+void write(int& output_count,int count, PageHandler& cur,PageHandler& cur_output, FileHandler& fh_output,char* &data_output){
+    // TODO: Need to check for data_output. Is it being updated outside?
     if(output_count==PAGE_CONTENT_SIZE){
         /// Need to create a new page
         fh_output.UnpinPage(cur_output.GetPageNum()); // We no longer need this page
