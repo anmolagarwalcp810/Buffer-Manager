@@ -2,13 +2,12 @@
 #include "file_manager.h"
 #include "errors.h"
 #include <cstring>
-#include <bits/stdc++.h> /// TODO: Remove this line as it consumes a lot of memory!
+#include <bits/stdc++.h>
 using namespace std;
 
-/// Algorithm:
+// Algorithm:
 // Find the first occurrence of num in (p, off_p)
 // Find the last occurrence of num in (q, off_q)
-// increment(q,off_q)
 // while (! (q, off_q) is the last valid element){
 //      Copy(q, off_q, p, off_p) // copy the element at (q, off_q to p,off_p)
 // }
@@ -107,17 +106,17 @@ pair<int,int> increment(pair<int, int> inp, PageHandler& cur, char* &data){
 
 pair<int,int> linScan(int num, FileHandler &fh_input, int total_first, int total_last, pair<int,int> start, PageHandler &cur){
     // Linearly Scan for the last occurrence of num
-    int p = start.first;
-    int off_p = start.second;
-    cur = fh_input.PageAt(p);
+    cur = fh_input.PageAt(start.first);
     int value;
     char* data = cur.GetData();
-    memcpy(&value,&data[4*off_p],sizeof(int));
+    memcpy(&value,&data[4*start.second],sizeof(int));
     while(value == num){
         start = increment(start, cur, data);
-
+        if(start.first == -1 && start.second == -1) return start;
+        memcpy(&value,&data[4*start.second],sizeof(int));
     }
-    return make_pair(-1,-1);
+    fh_input.UnpinPage(cur.GetPageNum());
+    return start;
 }
 
 
@@ -177,10 +176,7 @@ int main(int argc, char* argv[]) {
         pair<int, int> end;
         end = linScan(num, fh_input, total_first, total_last, start, cur);
 
-        // Increment
-        end = increment(end);
-
-        while (end.first <= total_last){
+        while (end.first != -1 && end.first <= total_last){
             // Copy(q, off_q, p, off_p)
             // copy the element at (q, off_q to p,off_p)
             int res = copy(start, end);
@@ -188,11 +184,16 @@ int main(int argc, char* argv[]) {
                 // end now has INT_MIN
                 break;
             }
-            increment(end);
-            increment(start);
+            cur = fh_input.PageAt(start.first);
+            data = cur.GetData();
+            start = increment(start, cur, data);
+            fh_input.UnpinPage(cur.GetPageNum());
+            cur = fh_input.PageAt(end.first);
+            end = increment(end, cur, data);
+            fh_input.UnpinPage(cur.GetPageNum());
         }
-
         // Delete all pages after p
+
 
         // Make all values from off_p  to last as 0
 
