@@ -11,6 +11,9 @@ int main(int agrc,char* argv[]){
 	FileManager fm;
 	// Enter 10 1's, 2's, 3's,...
 
+	int start=0,end=100;
+	int value;
+
 	FileHandler fh_output = fm.CreateFile(input_file1);
 	PageHandler cur_output = fh_output.NewPage();
 	int count=0;
@@ -26,7 +29,8 @@ int main(int agrc,char* argv[]){
 				data = cur_output.GetData();
 				count=0;
 			}
-			memcpy(&data[count],&i,sizeof(int));
+			value = (rand()%(end-start+1))+start;
+			memcpy(&data[count],&value,sizeof(int));
 			count+=4;
 		}
 	}

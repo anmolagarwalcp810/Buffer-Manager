@@ -91,8 +91,8 @@ int main(int argc,char* argv[]) {
         lastPageNum = total_last;
 
         // printf("88 First Page Number: %d\n", firstPageNum);
-        printf("89\n");
-        fm.PrintBuffer();
+        // printf("89\n");
+        // fm.PrintBuffer();
         while(lastPageNum >= firstPageNum){
             int mid = (lastPageNum + firstPageNum)/2; //TODO: Change to avoid overflow
             fh_input.UnpinPage(cur.GetPageNum());
@@ -106,9 +106,9 @@ int main(int argc,char* argv[]) {
                     done = true;
                     break;
                 }
-                printf("106\n");
+                // printf("106\n");
                 if(value==num){
-                    printf("104 The Page %d contains the values\n", mid);
+                    // printf("104 The Page %d contains the values\n", mid);
                     // The page contains num
                     // Write the values on this page to output:
                     while(count < PAGE_CONTENT_SIZE && value == num){
@@ -116,7 +116,7 @@ int main(int argc,char* argv[]) {
                         count += 4;
                         memcpy(&value,&data[count],sizeof(int));
                     }
-                    printf("114\n");
+                    // printf("114\n");
                     // Check if we need to load previous pages:
                     // If the first val is num and this is not the first page
                     memcpy(&value,&data[0],sizeof(int));    // first entry of current page

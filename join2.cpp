@@ -297,26 +297,26 @@ int main(int argc,char* argv[]) {
 	}
 
 	// Insert -1,-1, here we need to insert only once
-	if(output_count==PAGE_CONTENT_SIZE){
-		fh_output.UnpinPage(cur_output.GetPageNum());
-		fh_output.FlushPages();
-		cur_output = fh_output.NewPage();
-		output_count=0;
-		data_output = cur_output.GetData();
-	}
-	// -1
-	value = -1;
-	memcpy(&data_output[output_count],&value,sizeof(int));
-	output_count+=4;
-	if(output_count==PAGE_CONTENT_SIZE){
-		fh_output.UnpinPage(cur_output.GetPageNum());
-		fh_output.FlushPages();
-		cur_output = fh_output.NewPage();
-		output_count=0;
-		data_output = cur_output.GetData();
-	}
-	memcpy(&data_output[output_count],&value,sizeof(int));
-	output_count+=4;
+	// if(output_count==PAGE_CONTENT_SIZE){
+	// 	fh_output.UnpinPage(cur_output.GetPageNum());
+	// 	fh_output.FlushPages();
+	// 	cur_output = fh_output.NewPage();
+	// 	output_count=0;
+	// 	data_output = cur_output.GetData();
+	// }
+	// // -1
+	// value = -1;
+	// memcpy(&data_output[output_count],&value,sizeof(int));
+	// output_count+=4;
+	// if(output_count==PAGE_CONTENT_SIZE){
+	// 	fh_output.UnpinPage(cur_output.GetPageNum());
+	// 	fh_output.FlushPages();
+	// 	cur_output = fh_output.NewPage();
+	// 	output_count=0;
+	// 	data_output = cur_output.GetData();
+	// }
+	// memcpy(&data_output[output_count],&value,sizeof(int));
+	// output_count+=4;
 
 	// Now fill empty entries by INT_MIN
 	value=INT_MIN;

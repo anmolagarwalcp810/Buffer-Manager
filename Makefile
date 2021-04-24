@@ -11,13 +11,13 @@ create_filesObjects = buffer_manager.o file_manager.o create_files.o
 sample_run : $(sampleobjects) linearsearch view_file join1 join2 count_each_element binarysearch deletion create_files
 	     g++ -std=c++11 -o sample_run $(sampleobjects)
 		#remove this line in final submission
-# 		cp linearsearch ../Run/TC_search/Run_linear/linearsearch	     
-# 		cp binarysearch ../Run/TC_search/Run_binary/binarysearch
-# 		cp deletion ../Run/TC_delete/deletion
-# 		cp TestCases/TC_delete/sorted_input ../Run/TC_delete/sorted_input
-# 		cp join1 ../Run/TC_join1/Run/join1
-# 		cp join2 ../Run/TC_join2/Run/join2
-# 		cp create_files ../Run/NewTestCases/create_files
+		cp linearsearch ../Run/TC_search/Run_linear/linearsearch	     
+		cp binarysearch ../Run/TC_search/Run_binary/binarysearch
+		cp deletion ../Run/TC_delete/deletion
+		cp TestCases/TC_delete/sorted_input ../Run/TC_delete/sorted_input
+		cp join1 ../Run/TC_join1/Run/join1
+		cp join2 ../Run/TC_join2/Run/join2
+		cp create_files ../Run/NEW/create_files
 
 
 sample_run.o : sample_run.cpp
